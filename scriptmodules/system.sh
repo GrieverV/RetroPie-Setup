@@ -119,6 +119,7 @@ function conf_build_vars() {
     # if not overridden by user, configure our compiler flags
     [[ -z "$__cflags" ]] && __cflags="$__default_cflags"
     [[ -z "$__cxxflags" ]] && __cxxflags="$__default_cxxflags"
+    [[ -z "$__ldflags" ]] && __ldflags="$__default_ldflags"
     [[ -z "$__asflags" ]] && __asflags="$__default_asflags"
     [[ -z "$__makeflags" ]] && __makeflags="$__default_makeflags"
 
@@ -131,6 +132,7 @@ function conf_build_vars() {
     # export our compiler flags so all child processes can see them
     export CFLAGS="$__cflags"
     export CXXFLAGS="$__cxxflags"
+    export LDFLAGS="$__ldflags"
     export ASFLAGS="$__asflags"
     export MAKEFLAGS="$__makeflags"
 
@@ -424,6 +426,7 @@ function get_platform() {
 
 function set_platform_defaults() {
     __default_opt_flags="-O2"
+    __default_ldflags="-Wl,-O1,--sort-common,--as-needed"
 
     # add platform name and 32bit/64bit to platform flags
     __platform_flags=("$__platform" "$(getconf LONG_BIT)bit")
