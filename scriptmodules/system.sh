@@ -451,7 +451,7 @@ function platform_rpi2() {
 # could improve performance with the compiler options below but needs further testing
 function platform_rpi3() {
     if isPlatform "32bit"; then
-        __default_cpu_flags="-mcpu=cortex-a53 -mfpu=neon-fp-armv8"
+        __default_cpu_flags="-marm -mcpu=cortex-a53 -mfpu=neon-fp-armv8 -mfloat-abi=hard -funsafe-math-optimizations"
         __platform_flags+=(arm armv8 neon)
     else
         __default_cpu_flags="-mcpu=cortex-a53"
