@@ -17,6 +17,10 @@ rp_module_section="opt armv8=main x86=main"
 
 function sources_lr-snes9x() {
     gitPullOrClone "$md_build" https://github.com/snes9xgit/snes9x.git
+
+    # Improves performance on Kirby's Dream Land 3 by almost 10% on a RPi3B+
+    # inside the windy room with Nago and Rick on 1-1
+    applyPatch "$md_data/0001-Revert-Merge-pull-request-523-from-yoffy-unmacro-til.patch"
 }
 
 function build_lr-snes9x() {
