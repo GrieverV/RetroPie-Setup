@@ -425,7 +425,7 @@ function get_platform() {
 }
 
 function set_platform_defaults() {
-    __default_opt_flags="-O2"
+    __default_opt_flags="-O3 -fno-plt -fno-semantic-interposition -fdevirtualize-at-ltrans -fgcse-sm -fgcse-las -fgraphite-identity -floop-nest-optimize -funroll-loops -fipa-pta"
     __default_ldflags="-Wl,-O1,--sort-common,--as-needed"
 
     # add platform name and 32bit/64bit to platform flags
