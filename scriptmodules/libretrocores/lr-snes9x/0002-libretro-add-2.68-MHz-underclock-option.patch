@@ -1,0 +1,44 @@
+From c5bd38293594bd52f383dc66e880fa285f904f64 Mon Sep 17 00:00:00 2001
+From: Griever <grieverv@local.host>
+Date: Thu, 4 Feb 2021 00:00:00 +0000
+Subject: [PATCH] libretro: add 2.68 MHz underclock option
+
+Reported to improve performance for SA-1 titles such as
+Kirby's Dream Land 3 and Super Mario RPG on potatoes
+---
+ libretro/libretro.cpp            | 6 ++++++
+ libretro/libretro_core_options.h | 1 +
+ 2 files changed, 7 insertions(+)
+
+diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
+index 0304556..922e01c 100644
+--- a/libretro/libretro.cpp
++++ b/libretro/libretro.cpp
+@@ -418,6 +418,12 @@ static void update_variables(void)
+             Settings.OneSlowClockCycle  = 6;
+             Settings.TwoClockCycles     = 12;
+         }
++        else if (strcmp(var.value, "8cycles") == 0)
++        {
++            Settings.OneClockCycle      = 8;
++            Settings.OneSlowClockCycle  = 8;
++            Settings.TwoClockCycles     = 12;
++        }
+     }
+ 
+     Settings.MaxSpriteTilesPerLine = 34;
+diff --git a/libretro/libretro_core_options.h b/libretro/libretro_core_options.h
+index 1e90799..5fb7d85 100644
+--- a/libretro/libretro_core_options.h
++++ b/libretro/libretro_core_options.h
+@@ -184,6 +184,7 @@ struct retro_core_option_definition option_defs_us[] = {
+       "Overclock SNES CPU. May cause games to crash! Use 'Light' for shorter loading times, 'Compatible' for most games exhibiting slowdown and 'Max' only if absolutely required (Gradius 3, Super R-type...).",
+       {
+          { "disabled",   NULL },
++         { "8cycles",    "2.68 MHz" },
+          { "light",      "Light" },
+          { "compatible", "Compatible" },
+          { "max",        "Max" },
+-- 
+2.30.0
+

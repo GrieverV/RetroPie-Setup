@@ -21,6 +21,11 @@ function sources_lr-snes9x() {
     # Improves performance on Kirby's Dream Land 3 by almost 10% on a RPi3B+
     # inside the windy room with Nago and Rick on 1-1
     applyPatch "$md_data/0001-Revert-Merge-pull-request-523-from-yoffy-unmacro-til.patch"
+
+    # Adds a 2.68 MHz underclock option
+    # Reported to improve performance on Kirby's Dream Land 3 and
+    # Super Mario RPG, and fix a black screen on Tenshi no Uta
+    applyPatch "$md_data/0002-libretro-add-2.68-MHz-underclock-option.patch"
 }
 
 function build_lr-snes9x() {
